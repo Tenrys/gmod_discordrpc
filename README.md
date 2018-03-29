@@ -16,8 +16,8 @@ This script makes Garry's Mod send HTTP requests to your Discord client's RPC se
 
 ## Recommended:
 
-1. Download the [latest version](https://github.com/Tenrys/gmod_discordrpc/archive/master.zip) of the script.
-2. Extract the contents of the zip file you downloaded in the `addons` folder located in your game's installation directory. *(Default, on Windows: `C:\Program Files (x86\Steam\steamapps\common\Garry's Mod\garrysmod`)*.
+1. Clone the repository or simply download its [latest version](https://github.com/Tenrys/gmod_discordrpc/archive/master.zip).
+2. Extract the contents of the zip file you downloaded in the `addons` folder located in your game's installation directory. *(Default, on Windows: `C:\Program Files (x86\Steam\steamapps\common\Garry's Mod\garrysmod`)*. You can remove the `img` directory from the add-on's folder, it's only used for providing images in this file. *(Might cause issues while trying to pull if you cloned this repository though)*
 3. [Setup your own Discord application](https://discordapp.com/developers/applications/me), and grab its client ID.
 4. Put the client ID you got for the `discordrpc.clientID` value.
 
