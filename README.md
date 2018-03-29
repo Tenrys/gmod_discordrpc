@@ -10,7 +10,9 @@
 
 # How does it work?
 
-This script makes Garry's Mod send HTTP requests to your Discord client's RPC server in order to change your Rich Presence status according to what you make it feed it.
+This script makes your Garry's Mod send HTTP requests to your Discord client's RPC server in order to change your Rich Presence status according to what you make it feed it.
+
+It is completely clientside and your server won't have anything to do with the add-on except serving the files for your players, so no weird server HTTP requests to be worrying about!
 
 # Installation, usage
 
