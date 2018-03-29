@@ -29,6 +29,7 @@ function example:GetActivity()
 		timestamps = self:GetTimestamps(),
 		assets = self:GetAssets()
 	}
+end
 discordrpc.states.example = example
 
 -- Follow these guidelines: https://discordapp.com/developers/docs/topics/gateway#activity-object
