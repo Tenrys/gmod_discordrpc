@@ -36,7 +36,7 @@ If it still doesn't work even on Discord Canary, or the script ends up creating 
 
 # Planned
 
-- Default gamemodes states to server as examples, or simply just for lazy people (DarkRP, TTT, Sandbox)
+- Default gamemodes states to server as examples, or simply just for lazy people *(DarkRP, TTT, Sandbox)*
 
 # Credits
 
