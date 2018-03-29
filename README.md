@@ -2,8 +2,8 @@
 ## Discord Rich Presence support for Garry's Mod!
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/gmod_icon.png" height=150/>
-    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/discord_icon.png" height=150/>
+    <img src="https://raw.githubusercontent.com/Metastruct/gmod_discordrpc/master/img/gmod_icon.png" height=150/>
+    <img src="https://raw.githubusercontent.com/Metastruct/gmod_discordrpc/master/img/discord_icon.png" height=150/>
 </p>
 
 ### Notice: This script is completely safe and won't get you banned from Discord.
