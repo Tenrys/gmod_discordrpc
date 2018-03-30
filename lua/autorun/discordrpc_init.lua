@@ -7,8 +7,6 @@ local function load(path)
 	print("\tLoaded: " .. path)
 end
 
-local addonstates = file.Exists("addons/gmod_discordrpc", "MOD") and file.Find("addons/gmod_discordrpc/lua/discordrpc/states/*.lua", "MOD")
-
 load("discordrpc/init.lua")
 if SERVER then -- if server then just add the files to download
 	for _, fn in next, (file.Find("discordrpc/states/*.lua", "LUA")) do
@@ -16,7 +14,7 @@ if SERVER then -- if server then just add the files to download
 	end
 else -- otherwise create the function to load states later in main.lua
 	function discordrpc.LoadStates()
-		for _, fn in next, (addonstates or file.Find("discordrpc/states/*.lua", "LUA")) do
+		for _, fn in next, (file.Find("discordrpc/states/*.lua", "LUA")) do
 			load("discordrpc/states/" .. fn)
 		end
 	end
@@ -25,3 +23,4 @@ load("discordrpc/main.lua")
 
 
 Msg("DiscordRPC loading: done!\n")
+
