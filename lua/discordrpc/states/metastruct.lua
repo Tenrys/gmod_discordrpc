@@ -9,11 +9,24 @@ function metastruct:GetDetails()
 		return "Using the PAC3 Editor" -- Shorter later if we need to display more but we have space right now
 	end
 end
+local zone_fixup = {
+	hll = "hell",
+	hevn = "heaven",
+	breenoffice = "breen_office",
+	cre = "core",
+	cinm = "cinema",
+	slight = "darkness"
+}
 function metastruct:GetState()
 	-- Possibly reserved for other discordrpc states
 	local ply = LocalPlayer()
 	local zone = landmark.nearest(ply:GetPos())
-	if zone and zone:match("dond") or zone:match("minigame") then
+
+	if not zone then return "In Game" end
+	zone = zone:gsub("^AutoInstance0", "")
+	zone = zone_fixup[zone:lower()] or zone
+
+	if zone:match("dond") or zone:match("minigame") then
 		local dond_screen = ents.FindByClass("mitt_dond_screen")[1]
 		if IsValid(dond_screen) and dond_screen:GetRunning() then
 			if dond_screen:GetPlayer() == ply then
@@ -22,10 +35,10 @@ function metastruct:GetState()
 				return "Watching someone play DOND"
 			end
 		end
-		return "In minigame room"
+		return "In Minigame room"
 	end
 
-	return "In " .. (zone and zone:gsub("^[a-z]", string.upper):gsub("_", " ") or "some place")
+	return "Near " .. (zone and zone:gsub("^[a-z]", string.upper):gsub("_", " ") or "some place")
 end
 
 local start = os.time() -- os.time since spawned in the server, do not edit
