@@ -23,7 +23,7 @@ if not http.Loaded then
 	end)
 end
 
-hook.Add("HTTPLoaded", "discordrpc_metastruct", function()
+hook.Add("HTTPLoaded", "discordrpc_init", function()
 	discordrpc.Init(function(succ, err)
 		if succ then
 			discordrpc.LoadStates()

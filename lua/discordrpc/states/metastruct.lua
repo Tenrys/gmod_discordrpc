@@ -54,3 +54,7 @@ function metastruct:GetAssets()
 end
 discordrpc.states.metastruct = metastruct
 
+timer.Create("discordrpc_metastruct", 20, 0, function()
+	discordrpc.SetActivity(discordrpc.GetActivity(), discordrpc.Print)
+end)
+
