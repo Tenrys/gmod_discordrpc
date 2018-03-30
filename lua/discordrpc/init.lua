@@ -18,6 +18,8 @@ function discordrpc.Print(...)
 	local args = {...}
 	if type(args[1]) ~= "string" then
 		header = header:format(" DEBUG")
+	else
+		header = header:format("")
 	end
 
 	MsgC(Color(114, 137, 218), header)
@@ -76,6 +78,8 @@ function discordrpc.SetActivity(activity, callback)
 		},
 
 		success = function(status, body)
+			if not callback then return end
+
 			local data = util.JSONToTable(body)
 			if not data or data.evt == "ERROR" then
 				callback(false, "Discord error: " .. tostring(data.data and data.data.message or "nil"))
@@ -84,6 +88,8 @@ function discordrpc.SetActivity(activity, callback)
 			end
 		end,
 		failed = function(err)
+			if not callback then return end
+
 			callback(false, "HTTP error: " .. err)
 		end,
 	}

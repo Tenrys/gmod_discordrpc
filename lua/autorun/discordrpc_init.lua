@@ -14,6 +14,7 @@ if SERVER then -- if server then just add the files to download
 	end
 else -- otherwise create the function to load states later in main.lua
 	function discordrpc.LoadStates()
+		discordrpc.Print("Loading states:")
 		for _, fn in next, (file.Find("discordrpc/states/*.lua", "LUA")) do
 			load("discordrpc/states/" .. fn)
 		end
