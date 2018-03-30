@@ -42,7 +42,7 @@ function metastruct:GetAssets()
 	local assets = {}
 
 	-- For gm_construct_m, different large images depending on the zone, with last zone as fallback image?
-	if game.GetMap():match("^gm_construct_m_") then
+	if game.GetMap():match("^gm_construct_m") then
 		assets.large_image = "gm_construct_m"
 	elseif self.mapIconAssets[game.GetMap()] then
 		assets.large_image = game.GetMap()
