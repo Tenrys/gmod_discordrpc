@@ -49,6 +49,7 @@ function metastruct:GetAssets()
 	else
 		assets.large_image = "default"
 	end
+	assets.large_text = game.GetMap()
 
 	return assets
 end
