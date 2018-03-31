@@ -1,8 +1,8 @@
 
 if not discordrpc then ErrorNoHalt("DiscordRPC: missing???") return end
 
-discordrpc.clientID = "351448585939845141" -- This is your Discord application's client ID: https://discordapp.com/developers/applications/me
-discordrpc.state = "metastruct" -- This is the default state when you first load in.
+discordrpc.clientID = "" -- This is your Discord application's client ID: https://discordapp.com/developers/applications/me
+discordrpc.state = "" -- This is the default state when you first load in.
 
 http.Loaded = http.Loaded and http.Loaded or false
 local function checkHTTP()
