@@ -36,13 +36,16 @@ function discordrpc.Init(callback)
 					discordrpc.port = validPort
 
 					discordrpc.SetActivity({ details = "...", state = "..." }, function(body, err)
-						if not body and err:match("Not authenticated or invalid scope") then
-							discordrpc.Print("Warning: first SetActivity test didn't work, make sure you're using Discord Canary!")
+						if body == false then
+							discordrpc.Print("First SetActivity test was unsuccessful, error: " .. err)
+							if err:match("Not authenticated or invalid scope") then
+								discordrpc.Print("Make sure you're using Discord Canary!")
+							end
 						else
 							discordrpc.Print("First SetActivity test was successful, should be ready to work!")
 						end
 
-						if callback then
+						if callback then -- idk if we should cancel calling the call back if we error
 							callback(body, err)
 						end
 					end)
