@@ -23,7 +23,12 @@ function discordrpc.Print(...)
 	end
 
 	MsgC(Color(114, 137, 218), header)
-	print(...)
+	for k, v in next, args do
+		if istable(v) then
+			args[k] = table.ToString(v)
+		end
+	end
+	print(unpack(args))
 end
 function discordrpc.Init(callback)
 	if not discordrpc.port then
@@ -44,6 +49,7 @@ function discordrpc.Init(callback)
 						else
 							discordrpc.Print("First SetActivity test was successful, should be ready to work!")
 						end
+						discordrpc.Print(body, err)
 
 						if callback then -- idk if we should cancel calling the call back if we error
 							callback(body, err)
