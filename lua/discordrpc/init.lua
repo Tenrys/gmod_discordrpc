@@ -81,7 +81,7 @@ function discordrpc.SetActivity(activity, callback)
 		body = util.TableToJSON{
 			cmd = "SET_ACTIVITY",
 			args = {
-				pid = 12345, -- This doesn't really matter though it would be nice if we could get GMod's process ID in Lua
+				pid = math.random(11, 32768), -- This doesn't really matter though it would be nice if we could get GMod's process ID in Lua
 				activity = activity
 			},
 			nonce = tostring(SysTime())
