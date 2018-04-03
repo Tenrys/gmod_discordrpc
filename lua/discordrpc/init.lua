@@ -5,6 +5,7 @@
 
 discordrpc = discordrpc or {}
 discordrpc.enabled = CreateClientConVar("discordrpc_enabled", "1", true, false) -- FIX: If turned off while in game, Rich Presence will get stuck until you quit the game
+discordrpc.debug = CreateClientConVar("discordrpc_debug", "1", true, false) -- alternatively, use the "developer" convar?
 discordrpc.port = discordrpc.port
 
 discordrpc.states = discordrpc.states or {}
@@ -12,11 +13,11 @@ discordrpc.state = discordrpc.state
 
 -- discordrpc.clientID (string) should be set in main.lua
 -- discordrpc.state (string) should be set later in main.lua as the starting state
-
 function discordrpc.Print(...)
 	local header = "[Discord RPC%s] "
 	local args = {...}
 	if type(args[1]) ~= "string" then
+		if not discordrpc.debug:GetBool() then return end -- we are entering debug message land, don't show them if we don't want them to
 		header = header:format(" DEBUG")
 	else
 		header = header:format("")
