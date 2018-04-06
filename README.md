@@ -10,7 +10,7 @@
 
 # How does it work?
 
-This script makes your Garry's Mod send HTTP requests to your Discord client's RPC server in order to change your Rich Presence status according to what you make it feed it.
+This script makes your game client send HTTP requests to your Discord client's RPC server in order to change your Rich Presence according to what youq feed it.
 
 It is completely clientside and your server won't have anything to do with the add-on except serving the files for your players, so no weird server HTTP requests to be worrying about!
 
@@ -23,22 +23,16 @@ It is completely clientside and your server won't have anything to do with the a
 3. [Setup your own Discord application](https://discordapp.com/developers/applications/me), and grab its client ID.
 4. Put the client ID you got for the `discordrpc.clientID` value.
 
-By default, the add-on won't do much on itself, it's mainly targetting developers for them to expand on. Take a look at the example file in the `lua/discordrpc/states` folder to get a quick start.
+You'll probably want to make a custom state for your server / gamemode, I recommend you look at the `default.lua` and `example.lua` states for an idea of how that works.
 
 # Support
 
-I've tested this on the Canary branch of Discord, and on the Chromium branch of Garry's Mod.
-If this doesn't work on normal Discord, please wait patiently for the update that makes this work to roll out.
-
-If it still doesn't work even on Discord Canary, or the script ends up creating Lua errors internally *(e.g: not caused by your custom states logic)*, please create an issue with the error and the output from your console around `[Discord RPC]` stuff.
+This should work flawlessly on any version of Discord and Garry's Mod. If it doesn't, don't hesitate to create an issue.
+If the script ends up creating Lua errors internally *(not caused by your custom states logic)*, please create an issue with the error and the output from your console around `[Discord RPC]` stuff. This applies to the default state too, if it breaks, tell me.
 
 # Known bugs
 
 - None!
-
-# Planned
-
-- Default gamemodes states to server as examples, or simply just for lazy people *(DarkRP, TTT, Sandbox)*
 
 # Credits
 

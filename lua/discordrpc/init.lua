@@ -5,14 +5,14 @@
 
 discordrpc = discordrpc or {}
 discordrpc.enabled = CreateClientConVar("discordrpc_enabled", "1", true, false) -- FIX: If turned off while in game, Rich Presence will get stuck until you quit the game
-discordrpc.debug = CreateClientConVar("discordrpc_debug", "1", true, false) -- alternatively, use the "developer" convar?
+discordrpc.debug = CreateClientConVar("discordrpc_debug", "0", true, false) -- alternatively, use the "developer" convar?
 discordrpc.port = discordrpc.port
 
 discordrpc.states = discordrpc.states or {}
-discordrpc.state = discordrpc.state
 
 -- discordrpc.clientID (string) should be set in main.lua
 -- discordrpc.state (string) should be set later in main.lua as the starting state
+
 function discordrpc.Print(...)
 	local header = "[Discord RPC%s] "
 	local args = {...}
@@ -44,12 +44,12 @@ function discordrpc.Init(callback)
 
 					discordrpc.SetActivity({ state = "Initializing" }, function(body, err)
 						if body == false then
-							discordrpc.Print("First SetActivity test was unsuccessful, error: " .. err)
+							discordrpc.Print("Error: First SetActivity test was unsuccessful: " .. err)
 							if err:match("Not authenticated or invalid scope") then
 								discordrpc.Print("Make sure you're using Discord Canary!")
 							end
 						else
-							discordrpc.Print("First SetActivity test was successful, should be ready to work!")
+							discordrpc.Print("First SetActivity test was successful, ready to work!")
 						end
 						discordrpc.Print(body, err)
 
@@ -60,7 +60,7 @@ function discordrpc.Init(callback)
 				end
 			end
 			local failed = function(...)
-				discordrpc.Print("port " .. port .. " was probably invalid: ", ...)
+				-- discordrpc.Print("port " .. port .. " is probably invalid: ", ...)
 			end
 			http.Fetch(("http://127.0.0.1:%s"):format(port), success, failed)
 		end
@@ -83,7 +83,7 @@ function discordrpc.SetActivity(activity, callback, pid)
 
 	HTTP{
 		method = "POST",
-		url = ("http://127.0.0.1:%s/rpc?v=1&client_id=%s"):format(discordrpc.port, discordrpc.clientID),
+		url = ("http://127.0.0.1:%s/rpc?v=1&client_id=%s"):format(discordrpc.port, "431766142181441536"),
 
 		type = "application/json",
 		body = util.TableToJSON{
