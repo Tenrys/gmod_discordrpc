@@ -4,7 +4,7 @@
 -- Fail message: Not authenticated or invalid scope
 
 discordrpc = discordrpc or {}
-discordrpc.enabled = CreateClientConVar("discordrpc_enabled", "1", true, false) -- FIX: If turned off while in game, Rich Presence will get stuck until you quit the game
+discordrpc.enabled = CreateClientConVar("discordrpc_enabled", "1", true, false)
 discordrpc.debug = CreateClientConVar("discordrpc_debug", "0", true, false) -- alternatively, use the "developer" convar?
 discordrpc.port = discordrpc.port
 
@@ -140,8 +140,7 @@ function discordrpc.GetActivity()
 
 	return activity
 end
-
-hook.Add("ShutDown", "discordrpc_clear", function()
+function discordrpc.Shutdown()
 	for pid, active in next, pids do
 		if active then
 			discordrpc.SetActivity(nil, function()
@@ -149,5 +148,12 @@ hook.Add("ShutDown", "discordrpc_clear", function()
 			end, pid) -- reset all of our rich presences
 		end
 	end
-end)
+end
+
+cvars.AddChangeCallback("discordrpc_enabled", function(_, old, new)
+	if not tobool(new) then
+		discordrpc.Shutdown()
+	end
+end, "discordrpc_enabled")
+hook.Add("ShutDown", "discordrpc_clear", discordrpc.Shutdown)
 

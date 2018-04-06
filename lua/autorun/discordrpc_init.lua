@@ -22,6 +22,9 @@ else -- otherwise create the function to load states later in main.lua
 end
 load("discordrpc/main.lua")
 
-
 Msg("DiscordRPC loading: done!\n")
+
+if SERVER then
+	CreateConVar("discordrpc", "1", 0, "This ConVar does nothing, don't bother! It just allows people to filter servers using it.") -- server ConVar to allow filtering
+end
 
