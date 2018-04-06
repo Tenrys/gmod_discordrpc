@@ -33,6 +33,7 @@ function discordrpc.Print(...)
 end
 function discordrpc.Init(callback)
 	if not discordrpc.port then
+		discordrpc.Print("Finding port")
 		local validPort
 		for port = 6463, 6473 do
 			local success = function(body)
@@ -41,7 +42,7 @@ function discordrpc.Init(callback)
 					validPort = port
 					discordrpc.port = validPort
 
-					discordrpc.SetActivity({ details = "...", state = "..." }, function(body, err)
+					discordrpc.SetActivity({ state = "Initializing" }, function(body, err)
 						if body == false then
 							discordrpc.Print("First SetActivity test was unsuccessful, error: " .. err)
 							if err:match("Not authenticated or invalid scope") then
@@ -59,19 +60,26 @@ function discordrpc.Init(callback)
 				end
 			end
 			local failed = function(...)
-				-- do nothing
+				discordrpc.Print("port " .. port .. " was probably invalid: ", ...)
 			end
 			http.Fetch(("http://127.0.0.1:%s"):format(port), success, failed)
 		end
 	end
 end
-function discordrpc.SetActivity(activity, callback)
+
+local pids = {}
+function discordrpc.SetActivity(activity, callback, pid)
 	if not discordrpc.enabled:GetBool() then return end
 
 	if not discordrpc.port then
 		ErrorNoHalt("DiscordRPC: port unset, did you Init?")
 		return
 	end
+
+	-- This doesn't really matter though it would be nice if we could get GMod's process ID in Lua
+	-- we used to use math.random(11, 32768), I think that was really bad
+	local pid = pid or 1337 -- prefer a static pid?
+	pids[pid] = true
 
 	HTTP{
 		method = "POST",
@@ -81,7 +89,7 @@ function discordrpc.SetActivity(activity, callback)
 		body = util.TableToJSON{
 			cmd = "SET_ACTIVITY",
 			args = {
-				pid = math.random(11, 32768), -- This doesn't really matter though it would be nice if we could get GMod's process ID in Lua
+				pid = pid,
 				activity = activity
 			},
 			nonce = tostring(SysTime())
@@ -132,4 +140,14 @@ function discordrpc.GetActivity()
 
 	return activity
 end
+
+hook.Add("ShutDown", "discordrpc_clear", function()
+	for pid, active in next, pids do
+		if active then
+			discordrpc.SetActivity(nil, function()
+				pids[pid] = false
+			end, pid) -- reset all of our rich presences
+		end
+	end
+end)
 

@@ -20,7 +20,7 @@ function example:GetAssets()
 
 	-- Do whatever with the assets you add.
 
-	return assets
+	return -- assets
 end
 function example:GetActivity()
 	return {
