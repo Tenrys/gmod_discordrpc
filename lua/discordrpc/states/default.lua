@@ -23,14 +23,23 @@ function presences.sandbox:GetActivity()
 	local large_image = default.assets.large_image[engine.ActiveGamemode()] and engine.ActiveGamemode() or "default"
 	return {
 		details = GetHostName() .. " (" .. game.GetIPAddress() .. ")",
-		state = "Playing on " .. game.GetMap(),
+		state = "Playing on " .. game.GetMap() .. " (" .. player.GetCount() .. " / " .. game.MaxPlayers() .. " players)",
 		timestamps = {
 			start = gameStart
 		},
 		assets = {
 			large_image = large_image,
 			large_text = GAMEMODE.Name or engine.ActiveGamemode()
+		},
+		--[[
+		party = {
+			id = game.GetIPAddress(),
+			size = {
+				player.GetCount(),
+				game.MaxPlayers()
+			}
 		}
+		]]
 	}
 end
 local fallback = presences.sandbox
