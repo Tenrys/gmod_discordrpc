@@ -2,15 +2,15 @@
 ## Discord Rich Presence support for Garry's Mod!
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/gmod_icon.png" height=150/>
-    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/discord_icon.png" height=150/>
+    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/gmod_icon.png" height=256/>
+    <img src="https://raw.githubusercontent.com/Tenrys/gmod_discordrpc/master/img/discord_icon.png" height=256/>
 </p>
 
 ### Notice: This script is completely safe and won't get you banned from Discord.
 
 # How does it work?
 
-This script makes your game client send HTTP requests to your Discord client's RPC server in order to change your Rich Presence according to what youq feed it.
+This script makes your game client send HTTP requests to your Discord client's RPC server in order to change your Rich Presence according to what you feed it.
 
 It is completely clientside and your server won't have anything to do with the add-on except serving the files for your players, so no weird server HTTP requests to be worrying about!
 
