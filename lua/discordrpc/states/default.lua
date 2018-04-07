@@ -21,8 +21,9 @@ local gameStart = os.time()
 function presences.sandbox:GetActivity()
 	local GAMEMODE = GM or GAMEMODE
 	local large_image = default.assets.large_image[engine.ActiveGamemode()] and engine.ActiveGamemode() or "default"
+	local ip = game.GetIPAddress() == "loopback" and "local server" or game.GetIPAddress()
 	return {
-		details = GetHostName() .. " (" .. game.GetIPAddress() .. ")",
+		details = GetHostName() .. " (" .. ip .. ")",
 		state = "Playing on " .. game.GetMap() .. " (" .. player.GetCount() .. " / " .. game.MaxPlayers() .. " players)",
 		timestamps = {
 			start = gameStart
