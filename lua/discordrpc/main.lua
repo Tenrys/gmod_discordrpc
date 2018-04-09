@@ -1,7 +1,7 @@
 
 if not discordrpc then ErrorNoHalt("DiscordRPC: missing???") return end
 
-discordrpc.state = "default" -- This is the default state when you first load in.
+discordrpc.state = "default"
 
 if not game.SinglePlayer() then
 	local httpLoaded = false

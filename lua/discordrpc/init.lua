@@ -10,7 +10,7 @@ discordrpc.port = discordrpc.port
 
 discordrpc.states = discordrpc.states or {}
 
--- discordrpc.clientID (string) should be set in main.lua
+discordrpc.clientID = "431766142181441536" -- don't change this value, change it in your state's Init function
 -- discordrpc.state (string) should be set later in main.lua as the starting state
 
 function discordrpc.Print(...)
@@ -83,7 +83,7 @@ function discordrpc.SetActivity(activity, callback, pid)
 
 	HTTP{
 		method = "POST",
-		url = ("http://127.0.0.1:%s/rpc?v=1&client_id=%s"):format(discordrpc.port, "431766142181441536"),
+		url = ("http://127.0.0.1:%s/rpc?v=1&client_id=%s"):format(discordrpc.port, discordrpc.clientID),
 
 		type = "application/json",
 		body = util.TableToJSON{
