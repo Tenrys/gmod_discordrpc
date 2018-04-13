@@ -99,7 +99,7 @@ function default:Init()
 		local data = util.JSONToTable(body)
 		if data then
 			for _, asset in next, data do
-				if asset.type then
+				if istable(asset) and asset.type then
 					if asset.type == 2 then
 						self.assets.large_image[asset.name] = true
 					elseif asset.type == 1 then
