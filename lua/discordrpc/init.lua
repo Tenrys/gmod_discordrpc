@@ -32,7 +32,7 @@ function discordrpc.Print(...)
 	print(unpack(args))
 end
 
-local function try(port)
+local function try(port, callback)
 	if port > 6473 then discordrpc.Print("Error: couldn't find Discord RPC server.") return end
 
 	http.Fetch(("http://127.0.0.1:%s"):format(port), function(body)
@@ -57,13 +57,13 @@ local function try(port)
 			end)
 		end
 	end, function()
-		try(port + 1)
+		try(port + 1, callback)
 	end)
 end
 function discordrpc.Init(callback)
 	if not discordrpc.port then
 		discordrpc.Print("Finding port")
-		try(6463)
+		try(6463, callback)
 	end
 end
 
