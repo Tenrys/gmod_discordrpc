@@ -1,4 +1,6 @@
 
+# [DEPRECATED](https://github.com/discordapp/discord-rpc/issues/191#issuecomment-395171099)
+
 ## Discord Rich Presence support for Garry's Mod!
 
 <p align="center">
